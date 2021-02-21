@@ -1,0 +1,19 @@
+package com.kh.controller;
+// Controller : View를 통해서 요청한 기능을 처리하는 담당
+// view의 메소드를 호출한다, 해당 메소드로 전달된 데이터를 가공처리 한 후 Dao 메소드 호출시 전달
+// Dao로부터 반환받은 결과에 따라 사용자가 보게 될 view(응답화면)을 결정(view 메소드호출)
+
+public class MemberController {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
