@@ -1,0 +1,95 @@
+package com.kh.controller;
+// Controller : View를 통해서 요청한 기능을 처리하는 담당
+// view의 메소드를 호출한다, 해당 메소드로 전달된 데이터를 가공처리 한 후 Dao 메소드 호출시 전달
+// Dao로부터 반환받은 결과에 따라 사용자가 보게 될 view(응답화면)을 결정(view 메소드호출)
+
+import java.util.ArrayList;
+
+import com.kh.model.dao.MemberDao;
+import com.kh.model.vo.Member;
+import com.kh.view.MemberMenu;
+
+public class MemberController {
+	
+	/**
+	 * 사용자의 회원 추가 요청을 처리해주는 메소드
+	 * @param userId, userPwd, userName, gender, age, email, phone, address, hobby
+	 * => 사용자가 요청한 값
+	 */
+	public void insertMember(String userId, String userPwd, String userName, String gender, 
+							 int age, String email, String phone, String address, String hobby) {
+	
+		// 전달된 데이터들을 member객체 주섬주섬 담기
+		Member m = new Member(userId, userPwd, userName, gender, age, email, phone, address, hobby);
+		
+		int result = new MemberDao().insertMember(m);
+		
+		if(result > 0) { // 성공했을 경우
+			new MemberMenu().displaySuccess("회원 추가 성공");
+			
+		}else { // 실패했을 경우
+			new MemberMenu().displayFail("회원 추가 실패 ㅠㅠ");
+			
+		}
+		
+	}	
+	
+	/**
+	 * 사용자의 회원 전체 조회 요청을 처리해주는 메소드
+	 */
+	public void selectList() {
+		
+		ArrayList<Member> list = new MemberDao().selectList();
+		
+		// 조회 결과가 있는지 없는지 판단 한 후 사용자가 보게될 view지정
+		if(list.isEmpty()) { // 텅빈 리스트일경우 => 조회결과 없음
+			new MemberMenu().displayNoData("\n전체 조회 결과가 없습니다.");
+		}else { // 뭐라도 조회가 되었을 경우 => 조회결과 있음
+			new MemberMenu().displayList(list);
+		}
+		
+	}
+	
+	/**
+	 * 사용자의 아이디로 검색 요청 처리해주는 메소드
+	 * @param userId 사용자가 입력했던 검색하고자 하는 회원 아이디 값
+	 */
+	public void selectByUserId(String userId) {
+		
+		Member m = new MemberDao().selectByUserId(userId);
+		
+		if(m == null) {
+			new MemberMenu().displayNoData("\n" + userId + "에 해당하는 검색 결과가 없습니다");
+		}else {
+			new MemberMenu().displayOne(m);
+		}
+	}
+	
+	/**
+	 * 사용자의 회원명(키워드)로 검색요청시 처리해주는 메소드
+	 * @param keyword 사용자가 입력했던 검색하고자하는회원명(키워드)
+	 */
+	public void selectByUserName(String keyword) {
+		
+		ArrayList<Member> list = new MemberDao().selectByUserName(keyword);
+	
+		if(list.isEmpty()) {
+			new MemberMenu().displayNoData("\n" + keyword + "에 대한 검색결과가 없습니다.");
+		}else {
+			new MemberMenu().displayList(list);
+		}
+			
+	}
+	
+	public void updateMember(String userId, String userPwd, String email, String address) {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}
