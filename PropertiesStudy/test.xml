@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<comment>test properties</comment>
+	
+	<!--
+		주석 
+	 -->
+	
+	<entry key="selectList">
+		SELECT *
+		  FROM MEMBER
+		 ORDER BY USERNAME
+	</entry>
+	
+	<entry key="updateMember">
+		UPDATE MEMBER
+		   SET USERPWD = ?
+		     , EMAIL = ?
+		 WHERE USERID = ?
+	</entry>
+	
+	<entry key="deleteMember">
+		DELETE FROM MEMBER
+		 WEHRE USERID = ?
+	</entry>
+	
+	<entry key="C">Insert</entry>
+	
+</properties>
