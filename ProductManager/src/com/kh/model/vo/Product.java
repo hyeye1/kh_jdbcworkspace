@@ -22,8 +22,8 @@ public class Product {
 	public String getProductId() {
 		return productId;
 	}
-
-	public void setProductId(String productId) {
+  
+	public void setProductId(String productId) { 
 		this.productId = productId;
 	}
 
