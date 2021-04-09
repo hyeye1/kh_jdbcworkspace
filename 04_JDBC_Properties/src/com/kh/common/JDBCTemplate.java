@@ -22,7 +22,7 @@ public class JDBCTemplate {
 	
 	// 1. DB와 접속된 Connection 객체 생성해서 반환시켜주는 메소드
 	public static Connection getConnection() {
-		
+		 
 		Connection conn = null;
 		
 		Properties prop = new Properties();
