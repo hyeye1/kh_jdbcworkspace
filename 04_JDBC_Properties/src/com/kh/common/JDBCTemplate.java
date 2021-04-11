@@ -27,7 +27,7 @@ public class JDBCTemplate {
 		
 		Properties prop = new Properties();
 		
-		try {
+		try { 
 			prop.load(new FileInputStream("resources/driver.properties"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
